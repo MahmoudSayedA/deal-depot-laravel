@@ -6,15 +6,15 @@ Welcome to Deal Depot, the ultimate destination for buying and selling used prod
 
 To install and run Deal Depot on your local machine, you'll need to have PHP, Composer, and a database management system like MySQL or PostgreSQL installed.
 
-Clone the project repository from Git: `git clone https://github.com/MahmoudSayedA/deal-depot.git`
-Navigate to the project directory: `cd deal-depot`
-Copy the .env.example file to .env: `cp .env.example .env`
-Generate a new application key: `php artisan key:generate`
-Update the **.env** file with your database configuration and other settings.
-Install the project dependencies: `composer install`
-Run the database migrations: `php artisan migrate`
-Start the Laravel development server: `php artisan serv`
-Once you have completed these steps, you should be able to access the application by navigating to http://localhost:8000 in your web browser.
+1. Clone the project repository from Git: `git clone https://github.com/MahmoudSayedA/deal-depot.git`
+2. Navigate to the project directory: `cd deal-depot`
+3. Copy the .env.example file to .env: `cp .env.example .env`
+4. Generate a new application key: `php artisan key:generate`
+5. Update the **.env** file with your database configuration and other settings.
+6. Install the project dependencies: `composer install`
+7. Run the database migrations: `php artisan migrate`
+8. Start the Laravel development server: `php artisan serv`
+9. Once you have completed these steps, you should be able to access the application by navigating to http://localhost:8000 in your web browser.
 
 ## Usage
 
