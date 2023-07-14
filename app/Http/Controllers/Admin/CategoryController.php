@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
@@ -29,9 +30,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $imagePath = $request->file('image')->store('uploads/categories/images', 'public');
         Category::create([
             'name' => $request->name,
             'description' => $request->description,
+            'image' => $imagePath
         ]);
     }
 
@@ -40,8 +43,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $category = Category::where('id' , $id);
-        return json_encode($category);
+        $category = Category::find($id);
+        return response()->json($category);
     }
 
     /**
@@ -58,9 +61,23 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $category = Category::find($id);
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->save();
+
+        //get old image
+        $image = $category->image;
+        // check if new image added
+        if ($request->hasFile('image'))
+        {
+            $imagePath = public_path('storage/' . $category->image);
+            //delete the old
+            File::delete($imagePath);
+            //save the new
+            $image = $request->file('image')->store('uploads/categories/images', 'public');
+        }
+        $category->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $image,
+        ]);
     }
 
     /**
@@ -68,6 +85,13 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
+        $category = Category::find($id);
+        // Get the absolute path to the image file
+        $imagePath = public_path('storage/' . $category->image);
+
+        // Delete the image file from storage
+        $cond = File::delete($imagePath);
+
         Category::destroy($id);
     }
 }
