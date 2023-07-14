@@ -18,6 +18,12 @@
         @method('patch')
 
         <div>
+            <x-input-label for="phone" :value="__('Phone')" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+        </div>
+
+        <div>
             <x-input-label for="date_of_birth" :value="__('Date of birth')" />
             <x-text-input id="date_of_birth" name="date_of_birth" type="date" class="mt-1 block w-full" :value="old('date_of_birth', $user->date_of_birth)" autocomplete="date_of_birth" />
             <x-input-error class="mt-2" :messages="$errors->get('date_of_birth')" />
@@ -33,13 +39,11 @@
             <x-input-label for="gender" :value="__('Gender')" />
             <select name="gender" id="gender" class="mt-1 block w-full">
                 @isset($genders)
-                    @foreach ($genders as $gender)
-                        <option
-                            value="{{$gender->value}}"
-                            @selected($user->gender && $user->gender->value == $gender->value)>
-                            {{$gender->name}}
-                        </option>
-                    @endforeach
+                @foreach ($genders as $gender)
+                <option value="{{$gender->value}}" @selected($user->gender && $user->gender->value == $gender->value)>
+                    {{$gender->name}}
+                </option>
+                @endforeach
                 @endisset
             </select>
             <x-input-error class="mt-2" :messages="$errors->get('gender')" />
