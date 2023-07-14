@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Gender;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,15 +17,18 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $genders = Gender::cases();
+
         return view('profile.edit', [
             'user' => $request->user(),
+            'genders' => $genders,
         ]);
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request) //: RedirectResponse
     {
         $request->user()->fill($request->validated());
 
