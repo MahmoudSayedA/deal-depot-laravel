@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();
+            $table->string('phone')->nullable();
             $table->string('image')->nullable();
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
