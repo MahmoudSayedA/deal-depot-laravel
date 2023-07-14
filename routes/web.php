@@ -35,6 +35,7 @@ Route::get('/admin', [AdminController::class, 'index'])->middleware('auth', 'adm
 
 require __DIR__ . '/auth.php';
 
-Route::resource('/category' , CategoryController::class)->middleware('auth', 'admin');
+Route::middleware('auth', 'admin')->name('admin.')->group(function ()
+{ Route::resource('/admin/categories', CategoryController::class); });
 
-
+Route::get('/test',[VController::class,'view'])->middleware('auth', 'verified');
