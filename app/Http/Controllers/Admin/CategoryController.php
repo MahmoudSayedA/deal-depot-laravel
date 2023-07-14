@@ -41,16 +41,15 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        $category = Category::find($id);
         return response()->json($category);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
         //
     }
@@ -58,10 +57,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        $category = Category::find($id);
-
         //get old image
         $image = $category->image;
         // check if new image added
@@ -83,15 +80,14 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        $category = Category::find($id);
         // Get the absolute path to the image file
         $imagePath = public_path('storage/' . $category->image);
 
         // Delete the image file from storage
         $cond = File::delete($imagePath);
 
-        Category::destroy($id);
+        $category->delete();
     }
 }
