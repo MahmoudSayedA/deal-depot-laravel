@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return Product::all();
     }
 
     /**
@@ -42,10 +42,9 @@ class ProductController extends Controller
         ]);
 
         DB::table('products_categories')->insert([
-            'product_id' =>  $product->id ,
-            'category_id' => Category::where('name',$request->category)->first()->id
+            'product_id' =>  $product->id,
+            'category_id' => Category::where('name', $request->category)->first()->id
         ]);
-
     }
 
     /**
@@ -53,7 +52,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return response()->json($product);
+        return $product;
     }
 
     /**

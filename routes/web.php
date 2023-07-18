@@ -34,12 +34,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth', 'admin')->name('admin');
 
-Route::middleware('auth', 'admin')->name('admin.')->group(function ()
-{ Route::resource('/admin/categories', CategoryController::class); });
+Route::middleware('auth', 'admin')->name('admin.')->group(function () {
+    Route::resource('/admin/categories', CategoryController::class);
+});
 
 Route::resource('/products', ProductController::class)->middleware('auth', 'verified');
 
 require __DIR__ . '/auth.php';
-
-
-
