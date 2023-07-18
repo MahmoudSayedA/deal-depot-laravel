@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VController;
+use App\Http\Controllers\User\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +34,12 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth', 'admin')->name('admin');
 
+Route::middleware('auth', 'admin')->name('admin.')->group(function ()
+{ Route::resource('/admin/categories', CategoryController::class); });
+
+Route::resource('/products', ProductController::class)->middleware('auth', 'verified');
+
 require __DIR__ . '/auth.php';
+
+
+
