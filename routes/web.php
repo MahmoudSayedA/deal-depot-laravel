@@ -43,5 +43,5 @@ Route::resource('/products', ProductController::class)->middleware('auth', 'veri
 Route::get('/ratings', [RatingController::class, 'index'])->middleware('auth')->name('rating.index');
 Route::post('/ratings', [RatingController::class, 'store'])->middleware('auth')->name('rating.store');
 
-Route::get('/t', [VController::class, 'view']);
+
 require __DIR__ . '/auth.php';
