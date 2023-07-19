@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return Product::where('user_id', Auth::id())->get();
     }
 
     /**
@@ -41,10 +41,9 @@ class ProductController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        DB::table('products_categories')->insert([
-            'product_id' =>  $product->id,
-            'category_id' => Category::where('name', $request->category)->first()->id
-        ]);
+        if ($request->has('categories')) {
+            $product->categories()->attach($request->categories);
+        }
     }
 
     /**
