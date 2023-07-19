@@ -59,4 +59,25 @@ class User extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
+    /**
+     *  relationship with rating model
+     */
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'rated_id', 'id');
+    }
+
+    /**
+     * get the average rating
+     */
+    public function averageRating()
+    {
+        $totalRatings = $this->ratings()->count();
+        if ($totalRatings == 0) {
+            return 0;
+        }
+        $sumRatings = $this->ratings()->sum('rating');
+
+        return ($sumRatings / $totalRatings);
+    }
 }
