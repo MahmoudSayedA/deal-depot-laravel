@@ -43,6 +43,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        //May change to bring data from another tables using join
         return $category;
     }
 
