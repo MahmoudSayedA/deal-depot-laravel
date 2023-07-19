@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\RatingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,5 +40,7 @@ Route::middleware('auth', 'admin')->name('admin.')->group(function () {
 });
 
 Route::resource('/products', ProductController::class)->middleware('auth', 'verified');
+Route::get('/ratings', [RatingController::class, 'index'])->middleware('auth')->name('rating.index');
+Route::post('/ratings', [RatingController::class, 'store'])->middleware('auth')->name('rating.store');
 
 require __DIR__ . '/auth.php';
