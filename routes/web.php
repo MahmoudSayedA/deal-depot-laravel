@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RatingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,5 +31,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth', 'admin')->name('admin');
+
+Route::get('/ratings', [RatingController::class, 'index'])->middleware('auth')->name('rating.index');
+Route::post('/ratings', [RatingController::class, 'store'])->middleware('auth')->name('rating.store');
 
 require __DIR__ . '/auth.php';
