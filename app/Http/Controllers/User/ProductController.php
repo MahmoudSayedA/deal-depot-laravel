@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return Product::where('user_id', Auth::id())->get();
     }
 
     /**
@@ -32,6 +33,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //store product record in products table
         $product = Product::Create([
             'name' => $request->name,
             'description' => $request->description,
@@ -40,12 +42,22 @@ class ProductController extends Controller
             'is_sold' => 0,
             'user_id' => Auth::id(),
         ]);
+        //store categories of the product in product-category table
+        if ($request->has('categories')) {
+            $product->categories()->attach($request->categories);
+        }
 
-        DB::table('products_categories')->insert([
-            'product_id' =>  $product->id ,
-            'category_id' => Category::where('name',$request->category)->first()->id
-        ]);
-
+        //store images paths in images table and store them physically
+        if ($request->has('images')) {
+            $imagesFiles = $request->file('images');
+            foreach ($imagesFiles as $image) {
+                $imagePath = $image->store('uploads/products/images', 'public');
+                Image::create([
+                    'image' => $imagePath,
+                    'product_id' => $product->id
+                ]);
+            }
+        }
     }
 
     /**
@@ -53,7 +65,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return response()->json($product);
+        //May change to bring data from another tables using join
+        return $product;
     }
 
     /**

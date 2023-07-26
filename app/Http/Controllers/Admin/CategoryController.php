@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return Category::all();
     }
 
     /**
@@ -43,7 +43,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return response()->json($category);
+        //May change to bring data from another tables using join
+        return $category;
     }
 
     /**
@@ -62,8 +63,7 @@ class CategoryController extends Controller
         //get old image
         $image = $category->image;
         // check if new image added
-        if ($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $imagePath = public_path('storage/' . $category->image);
             //delete the old
             File::delete($imagePath);

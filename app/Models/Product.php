@@ -24,14 +24,16 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Add relation with categories table
-     */
-    public function category()
+    public function categories()
     {
         return $this->belongsToMany(Category::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+  
     /**
      * Add relation with deals table
      */
