@@ -80,4 +80,12 @@ class User extends Authenticatable
 
         return ($sumRatings / $totalRatings);
     }
+
+    /**
+     * get the average rating
+     */
+    public function deals()
+    {
+        return $this->hasMany(Deal::class, 'user_id', 'id');
+    }
 }

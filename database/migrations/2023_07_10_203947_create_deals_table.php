@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('expiry_date')->nullable();
             $table->string('status');
             $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
-            $table->foreignId('seller_id')->constrained('users', 'id')->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained('products', 'id')->cascadeOnDelete();
             $table->timestamps();
         });
     }

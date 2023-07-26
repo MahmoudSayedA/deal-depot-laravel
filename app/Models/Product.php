@@ -16,7 +16,9 @@ class Product extends Model
         'is_sold',
         'user_id',
     ];
-
+    /**
+     * Add relation with users table
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -30,5 +32,13 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+  
+    /**
+     * Add relation with deals table
+     */
+    public function deals()
+    {
+        return $this->hasMany(Deal::class, 'product_id', 'id');
     }
 }
