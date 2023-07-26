@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+
 
 class RatingController extends Controller
 {
@@ -17,9 +19,12 @@ class RatingController extends Controller
     {
 
         $user_id = Auth::id();
-        $ratings = Rating::with('rated')->where('user_id', '=', $user_id)->get();
+        // Ratings according to the User
+        $ratings = Rating::with('user')->where('rated_id', '=', $user_id)->get();
+        // Rating value
+        $rating = User::findOrFail($user_id)->averageRating();
 
-        return $ratings;
+        return [$ratings, $rating];
     }
 
 

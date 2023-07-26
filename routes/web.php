@@ -5,8 +5,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VController;
 use App\Http\Controllers\User\ProductController;
-use App\Http\Controllers\RatingController;
+use App\Http\Controllers\User\RatingController;
 use App\Http\Controllers\User\DealController;
+use App\Http\Controllers\User\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -45,17 +46,15 @@ Route::middleware('auth', 'admin')->name('admin.')->group(function () {
 
 // User
 Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/ratings', [RatingController::class, 'index'])->name('rating.index');
-    Route::post('/ratings', [RatingController::class, 'store'])->name('rating.store');
-    Route::resource('/products', ProductController::class)->except('index');
+    Route::get('/ratings', [RatingController::class, 'index'])->name('ratings.index');
+    Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store');
+    Route::resource('/products', ProductController::class);
     Route::prefix('/products/{product_id}')->group(function () {
         Route::resource('/deals', DealController::class);
     });
 });
 
-// non auth
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-
-
+// none auth
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 
 require __DIR__ . '/auth.php';
