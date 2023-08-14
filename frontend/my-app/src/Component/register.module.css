@@ -1,0 +1,128 @@
+.content,
+.sidebar {
+    position: absolute
+}
+
+.categories,
+.content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal
+}
+
+.Header,
+.content button:hover {
+    color: var(--color-darkslateblue)
+}
+
+.categories,
+.container,
+.content {
+    -webkit-box-direction: normal
+}
+
+.sidebar {
+    top: 1030px;
+    left: 0;
+    width: 200px;
+    height: 500px;
+    background-color: var(--color-darkslateblue);
+    border-radius: 20px;
+    overflow-y: auto;
+    padding: 20px;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s
+}
+
+.categories {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 20px
+}
+
+.Header,
+.content {
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.categories button {
+    margin-bottom: 10px
+}
+
+.content {
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: calc(100% - 200px);
+    height: 100%;
+    top: 40;
+    left: 200px
+}
+
+.content button {
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 50px;
+    background-color: var(--color-sandybrown);
+    font-size: 20px;
+    font-weight: 700
+}
+
+.content button:hover {
+    background-color: var(--color-whitesmoke);
+    -webkit-box-shadow: 0 0 .5rem rgba(0, 0, 0, .5);
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, .5)
+}
+
+.Header {
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: 800px;
+    margin: 20px
+}
+
+.container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 20px
+}
+
+.productContent {
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
+    margin-top: 20px;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.product {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}

@@ -1,0 +1,237 @@
+:root {
+    --color-whitesmoke: #ECF0F1;
+    --color-darkslategray: #222F3E;
+    --color-sandybrown: #FF9F43;
+    --color-darkslateblue: #192A56;
+    --br-3xs: 3px;
+    --br-31xl: 31px;
+    --font-size-41xl: 4.5rem;
+    --font-size-6xl: 6rem;
+    --padding-11xl: 11rem;
+    --padding-3xs: 3px;
+    --gap-81xl: 81px;
+    --font-inter: 'Inter', sans-serif
+}
+
+.outer {
+    position: relative;
+    background-color: var(--color-darkslateblue);
+    width: 100%;
+    height: 1024px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: var(--padding-11xl) var(--padding-3xs);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    gap: var(--gap-81xl);
+    text-align: left;
+    font-size: var(--font-size-6xl);
+    color: var(--color-darkslateblue);
+    font-family: var(--font-inter)
+}
+
+.inner,
+.logo {
+    position: absolute;
+    margin: 0 !important
+}
+
+.inner {
+    top: 68px;
+    left: 84px;
+    border-radius: var(--br-3xs) 0 var(--br-3xs) 0;
+    background-color: var(--color-whitesmoke);
+    width: 1445px;
+    height: 877px;
+    z-index: 0
+}
+
+.logo {
+    top: 85px;
+    left: 104px;
+    border-radius: var(--br-3xs);
+    width: 170px;
+    height: 100px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    z-index: 1
+}
+
+.us {
+    color: var(--color-sandybrown)
+}
+
+.contactus,
+.rectangleDiv button:hover {
+    color: var(--color-darkslateblue)
+}
+
+.contactus {
+    top: 220px;
+    left: 612px;
+    font-size: 60px;
+    font-weight: 800;
+    display: inline-block;
+    width: 400px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    z-index: 3
+}
+
+.Email input,
+.Name input,
+.information,
+.message input,
+.subject input {
+    background-color: var(--color-darkslateblue);
+    mix-blend-mode: difference;
+    font-size: 20px;
+    z-index: 2
+}
+
+.Email,
+.Name,
+.contactus,
+.message,
+.subject {
+    position: absolute;
+    margin: 0;
+    height: 67px
+}
+
+.message,
+.subject {
+    left: 200px;
+    border-radius: var(--br-31xl);
+    width: 377px
+}
+
+.information {
+    position: absolute;
+    top: 330px;
+    height: 550px;
+    left: 880px;
+    border-radius: var(--br-31xl);
+    width: 500px;
+    border: 0
+}
+
+.rectangleDiv {
+    position: absolute;
+    height: 67px;
+    left: 200px;
+    margin-top: 60px;
+    border-radius: 2px;
+    width: 377px
+}
+
+.Email,
+.Name {
+    top: 312px;
+    width: 1000px
+}
+
+.Name {
+    left: 200px;
+    border-radius: var(--br-31xl)
+}
+
+.Email input,
+.Name input {
+    border-radius: var(--br-31xl);
+    height: 67px;
+    color: #fff;
+    margin: 10px;
+    border: 0
+}
+
+.Email {
+    left: 450px;
+    border-radius: var(--br-31xl)
+}
+
+.subject {
+    top: 422px
+}
+
+.message input,
+.subject input {
+    border-radius: var(--br-31xl);
+    width: 377px;
+    height: 67px;
+    color: #fff;
+    margin: 10px;
+    border: 0
+}
+
+.message {
+    top: 546px
+}
+
+.information h2 {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 50px;
+    color: #f7cc7c
+}
+
+.information span {
+    padding-top: 40px;
+    padding-left: 10px;
+    color: #f7cc7c
+}
+
+.address,
+.mail,
+.phone,
+.website {
+    margin: 50px
+}
+
+.font {
+    font-size: 30px
+}
+
+.information img {
+    position: absolute;
+    margin: 5px;
+    height: 50px
+}
+
+.rectangleDiv {
+    top: 727px
+}
+
+.rectangleDiv button {
+    height: 67px;
+    width: 100%;
+    border-radius: 20px;
+    padding: 10px 30px;
+    background-color: var(--color-sandybrown);
+    color: var(--color-whitesmoke);
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 10px;
+    border: 0;
+    z-index: 5
+}
+
+.error {
+    font-size: 20px;
+    margin: 10px;
+    color: red
+}
