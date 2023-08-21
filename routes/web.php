@@ -3,12 +3,11 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\RatingController;
 use App\Http\Controllers\User\DealController;
+use App\Http\Controllers\User\TransactionController;
 use App\Http\Controllers\User\UserController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,10 +37,11 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin
-Route::get('/admin', [AdminController::class, 'index'])->middleware('auth', 'admin')->name('admin');
-
-Route::middleware('auth', 'admin')->name('admin.')->group(function () {
-    Route::resource('/admin/categories', CategoryController::class);
+Route::middleware('auth', 'verified', 'admin')->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::resource('categories', CategoryController::class);
+    Route::resource('/transactions', TransactionController::class)->except('index');
+    Route::get('/transactions', [TransactionController::class, 'adminIndex'])->name('transactions.index');
 });
 
 // User
@@ -49,12 +49,21 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/ratings', [RatingController::class, 'index'])->name('ratings.index');
     Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store');
     Route::resource('/products', ProductController::class);
+    Route::resource('/transactions', TransactionController::class)->only('index', 'show');
+    // deals and transactions routes
     Route::prefix('/products/{product_id}')->group(function () {
-        Route::resource('/deals', DealController::class);
+        Route::resource('/deals', DealController::class)->except('index', 'show');
+        Route::prefix('/deals/{deal_id}')->group(function () {
+            Route::resource('transactions', TransactionController::class)->only('create', 'store');
+        });
     });
 });
 
 // none auth
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::resource('categories', CategoryController::class)->only('index', 'show');
+Route::prefix('/products/{product_id}')->group(function () {
+    Route::resource('/deals', DealController::class)->only('index', 'show');
+});
 
 require __DIR__ . '/auth.php';

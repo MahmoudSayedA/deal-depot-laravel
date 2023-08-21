@@ -56,7 +56,7 @@ class DealController extends Controller
     /**
      * Display the specified deal.
      */
-    public function show(Deal $deal)
+    public function show($product_id, Deal $deal)
     {
         return $deal;
     }
@@ -64,7 +64,7 @@ class DealController extends Controller
     /**
      * Show the form for editing the specified deal.
      */
-    public function edit(Deal $deal)
+    public function edit($product_id, Deal $deal)
     {
         return "edit deal page";
     }
@@ -72,7 +72,7 @@ class DealController extends Controller
     /**
      * Update the specified deal in storage.
      */
-    public function update(Request $request, Deal $deal)
+    public function update(Request $request, Deal $deal, $product_id)
     {
         // validate
         $validator = Validator::make($request, [
@@ -93,7 +93,7 @@ class DealController extends Controller
     /**
      * Remove the specified deal from storage.
      */
-    public function destroy(Deal $deal)
+    public function destroy(Deal $deal, $product_id)
     {
         return $deal->delete();
     }
