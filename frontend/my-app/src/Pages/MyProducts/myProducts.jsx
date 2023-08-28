@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Cover from './cover';
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
+import Cover from '../../Component/cover';
 import styles from './myProducts.module.css';
-import deleteIcon from "../Images/close-but.png";
-
+import deleteIcon from "../../Images/close-but.png";
 
 const MyProducts = (props) => {
     const [products, setProducts] = useState([]);
@@ -15,40 +15,64 @@ const MyProducts = (props) => {
     });
     const [editingIndex, setEditingIndex] = useState(-1);
 
+    const fetchProducts = useCallback(async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/products');
+            setProducts(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
+
+
+    const addProduct = async () => {
+        try {
+            const response = await axios.post('http://localhost:3000/products', newProduct);
+            setProducts([...products, response.data]);
+            resetNewProduct(); // Call the resetNewProduct function
+        } catch (error) {
+            console.error(error);
+            alert('Failed to add the product.');
+        }
+    };
+
+    const updateProduct = async () => {
+        try {
+            const response = await axios.put(`http://localhost:3000/products/${editingIndex}`, newProduct);
+            const updatedProducts = [...products];
+            updatedProducts[editingIndex] = response.data;
+            setProducts(updatedProducts);
+            resetNewProduct(); // Call the resetNewProduct function
+        } catch (error) {
+            console.error(error);
+            alert('Failed to update the product.');
+        }
+    };
+
     const handleAddProduct = () => {
-        // Validate the input fields
         if (!newProduct.name || !newProduct.price) {
             alert('Please enter a name and price for the product.');
             return;
         }
 
-        // Create a copy of the products array
-        const updatedProducts = [...products];
-
-        if (editingIndex !== -1) {
-            // Update existing product
-            updatedProducts[editingIndex] = newProduct;
-            setEditingIndex(-1); // Exit editing mode
-        } else {
-            // Add new product to the array
-            updatedProducts.push(newProduct);
+        if (!newProduct.image) {
+            alert('Please choose an image for the product.');
+            return;
         }
 
-        // Update the products state with the updated array
-        setProducts(updatedProducts);
-        // Reset the newProduct state to clear the input fields
-        setNewProduct({
-            image: '',
-            name: '',
-            description: '',
-            price: '',
-            date: new Date().toISOString().slice(0, 10),
-        });
+        if (editingIndex !== -1) {
+            updateProduct();
+        } else {
+            addProduct();
+        }
     };
 
     const handleEditProduct = (index) => {
         const productToEdit = products[index];
-        // Set the newProduct state with the product data to edit
         setNewProduct(productToEdit);
         setEditingIndex(index);
     };
@@ -64,7 +88,6 @@ const MyProducts = (props) => {
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
-
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -77,10 +100,27 @@ const MyProducts = (props) => {
         }
     };
 
-    const deleteProduct = (index) => {
-        const updatedProducts = [...products];
-        updatedProducts.splice(index, 1);
-        setProducts(updatedProducts);
+    const deleteProduct = async (index) => {
+        try {
+            const productId = products[index].id;
+            await axios.delete(`http://localhost:3000/products/${productId}`);
+            const updatedProducts = [...products];
+            updatedProducts.splice(index, 1);
+            setProducts(updatedProducts);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const resetNewProduct = () => {
+        setNewProduct({
+            image: '',
+            name: '',
+            description: '',
+            price: '',
+            date: new Date().toISOString().slice(0, 10),
+        });
+        setEditingIndex(-1);
     };
 
     return (
@@ -108,7 +148,7 @@ const MyProducts = (props) => {
                                 </div>
                                 <div>
                                     <img
-                                        src={require("../Images/icons8-edit-50.png")}
+                                        src={require("../../Images/icons8-edit-50.png")}
                                         className={styles.icon}
                                         alt=""
                                         onClick={() => handleEditProduct(index)}
@@ -128,7 +168,7 @@ const MyProducts = (props) => {
                             {newProduct.image ? (
                                 <img className={styles.image} src={newProduct.image} alt="" />
                             ) : (
-                                <img className={styles.image} src={require("../Images/personal photo.jpg")} alt="" />
+                                <img className={styles.image} src={require("../../Images/personal photo.jpg")} alt="" />
                             )}
                         </label>
                         <input
@@ -182,7 +222,10 @@ export default MyProducts;
 
 
 
-//call api 
+
+
+
+//call api
 
 // import React, { useState, useEffect } from 'react';
 // import Cover from './cover';

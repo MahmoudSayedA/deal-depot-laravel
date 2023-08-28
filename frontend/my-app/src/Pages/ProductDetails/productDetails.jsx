@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Product from './product';
+import Product from '../Product/product';
 import styles from "./productDetails.module.css";
-import Cover from './cover';
+import Cover from '../../Component/cover';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faLocationDot, faMapLocationDot, faStar, faMessage } from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
 
 function ProductDetails() {
-    const api_url = 'https://fakestoreapi.com/products';
+    const api_url = 'http://localhost:3000/products';
     const [product, setProduct] = useState({});
     const [showSidebar, setShowSidebar] = useState(false);
     const params = useParams();
 
     useEffect(() => {
-        fetch(`${api_url}/${params.productId}`)
-            .then((res) => res.json())
-            .then((product) => setProduct(product));
+        axios
+            .get(`${api_url}/${params.productId}`)
+            .then((res) => {
+                setProduct(res.data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }, [params.productId]);
 
     return (
@@ -36,7 +42,7 @@ function ProductDetails() {
                 {showSidebar && (
                     <div className={styles.sinfo}>
                         <div className={styles.personalImg}>
-                            <img src={require("../Images/personal photo.jpg")} alt="" />
+                            <img src={require("../../Images/personal photo.jpg")} alt="" />
                         </div>
                         <div className={styles.name}>S.Name</div>
                         <div className={styles.sideIcon}>
@@ -71,6 +77,6 @@ function ProductDetails() {
             </div>
         </>
     );
-};
+}
 
 export default ProductDetails;

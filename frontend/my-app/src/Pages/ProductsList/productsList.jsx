@@ -1,36 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './productsList.module.css';
-import Product from './product';
+import Product from '../Product/product';
+import axios from 'axios';
 
 function ProductsList() {
-    const api_url = 'https://fakestoreapi.com/products';
+    const api_url = 'http://localhost:3000/products';
+    const categories_url = 'http://localhost:3000/categories';
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [showSidebar, setShowSidebar] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState([]);
-
     const getProducts = () => {
-        fetch(api_url)
-            .then((res) => res.json())
-            .then((data) => {
-                setProducts(data);
-                setFilteredProducts(data);
+        axios
+            .get(api_url)
+            .then((res) => {
+                setProducts(res.data);
+                setFilteredProducts(res.data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
             });
     };
 
     const getCategories = () => {
-        fetch(`${api_url}/categories`)
-            .then((res) => res.json())
-            .then((data) => setCategories(data));
+        axios
+            .get(categories_url)
+            .then((res) => {
+                setCategories(res.data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     };
 
     const getProductInCategory = (catName) => {
-        fetch(`${api_url}/category/${catName}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setProducts(data);
-                setFilteredProducts(data);
+        axios
+            .get(`${api_url}/category/${catName}`)
+            .then((res) => {
+                setProducts(res.data);
+                setFilteredProducts(res.data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
             });
     };
 

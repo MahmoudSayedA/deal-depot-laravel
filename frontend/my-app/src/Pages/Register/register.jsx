@@ -104,7 +104,7 @@ const Register = () => {
     return (
         <div className={outer}>
             <div className={inner} />
-            <img className={logo} alt="Company Logo" src={require("../Images/logo.jpeg")} />
+            <img className={logo} alt="Company Logo" src={require("../../Images/logo.jpeg")} />
             <h2 className={styles.signUp}>
                 <span>{`Sign `}</span>
                 <span className={styles.up}>Up</span>
@@ -194,7 +194,7 @@ const Register = () => {
                     {state.image ? (
                         <img src={URL.createObjectURL(state.image)} alt="" />
                     ) : (
-                        <img src={require("../Images/personal photo.jpg")} alt="" />
+                        <img src={require("../../Images/personal photo.jpg")} alt="" />
                     )}
                 </label>
                 <input

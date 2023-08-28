@@ -69,7 +69,7 @@ const Contact = () => {
         <Fragment>
             <div className={outer}>
                 <div className={inner} />
-                <img className={logo} alt="Company Logo" src={require("../Images/logo.jpeg")} />
+                <img className={logo} alt="Company Logo" src={require("../../Images/logo.jpeg")} />
                 <div className={styles.contactus}>
                     <span>{`Contact `}</span>
                     <span className={styles.us}>Us</span>
@@ -136,22 +136,22 @@ const Contact = () => {
                 </form>
                 <div className={styles.information}>
                     <h2>Contact Us</h2>
-                    <img src={require("../Images/country.png")} alt="" />
+                    <img src={require("../../Images/country.png")} alt="" />
                     <div className={styles.address}>
                         <span className={styles.font}>Address:</span>
                         <span>Cairo</span>
                     </div>
-                    <img src={require("../Images/phone.png")} alt="" /> 
+                    <img src={require("../../Images/phone.png")} alt="" /> 
                     <div className={styles.phone}>
                         <span className={styles.font}>Phone:</span>
                         <span>11111</span>
                     </div>
-                    <img src={require("../Images/gmail.png")} alt="" />
+                    <img src={require("../../Images/gmail.png")} alt="" />
                     <div className={styles.mail}> 
                         <span className={styles.font}>Mail:</span>
                         <span>f@gmail.com</span>
                     </div>
-                    <img src={require("../Images/website.png")} alt="" />
+                    <img src={require("../../Images/website.png")} alt="" />
                     <div className={styles.website}> 
                         <span className={styles.font}>Website:</span>
                         <span>www.DealDepot.com</span>

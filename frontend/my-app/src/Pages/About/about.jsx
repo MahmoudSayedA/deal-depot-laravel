@@ -1,5 +1,5 @@
 import React from 'react';
-import Cover from './cover';
+import Cover from '../../Component/cover';
 import styles from './about.module.css';
 
 const About = ({ children }) => (

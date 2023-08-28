@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
-import Cover from './cover';
+import Cover from '../../Component/cover';
 import { Link } from 'react-router-dom';
 import styles from './home.module.css';
-import HomeImage from '../Images/Home.jpg';
+import HomeImage from '../../Images/Home.jpg';
 
 const Home = ({ children }) => (
     <Fragment>

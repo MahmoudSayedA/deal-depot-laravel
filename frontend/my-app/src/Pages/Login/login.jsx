@@ -61,7 +61,7 @@ const Login = () => {
     return (
         <div className={outer}>
             <div className={inner} />
-            <img className={logo} alt="Company Logo" src={require('../Images/logo.jpeg')} />
+            <img className={logo} alt="Company Logo" src={require('../../Images/logo.jpeg')} />
             <div className={styles.signIn}>
                 <span>{`Sign `}</span>
                 <span className={styles.in}>In</span>

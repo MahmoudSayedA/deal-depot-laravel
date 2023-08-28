@@ -1,5 +1,5 @@
 import React from 'react';
-import Cover from './cover';
+import Cover from '../../Component/cover';
 
 const Services = (props) => (
     <div>
