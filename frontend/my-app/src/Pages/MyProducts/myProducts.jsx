@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
-import Cover from '../../Component/cover';
+import Cover from '../../Component/Cover/cover';
 import styles from './myProducts.module.css';
-import deleteIcon from "../../Images/close-but.png";
+import deleteIcon from "../../assets/Images/close-but.png";
 
 const MyProducts = (props) => {
     const [products, setProducts] = useState([]);
@@ -14,6 +14,8 @@ const MyProducts = (props) => {
         date: new Date().toISOString().slice(0, 10), // Set current date as default
     });
     const [editingIndex, setEditingIndex] = useState(-1);
+    const [currentDate, setCurrentDate] = useState('');
+    const editRef = useRef(null);
 
     const fetchProducts = useCallback(async () => {
         try {
@@ -26,8 +28,14 @@ const MyProducts = (props) => {
 
     useEffect(() => {
         fetchProducts();
+        setCurrentDate(new Date().toISOString().slice(0, 10)); // Update the current date
     }, [fetchProducts]);
 
+    useEffect(() => {
+        if (editingIndex !== -1) {
+            editRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [editingIndex]);
 
     const addProduct = async () => {
         try {
@@ -143,83 +151,84 @@ const MyProducts = (props) => {
                                     Price:
                                     <span className={styles.priceText}>{product.price}</span>
                                 </div>
-                                <div>
-                                    <p className={styles.time}>at {product.date}</p>
+                                    <div className={styles.description}>
+                                        Description:
+                                        <span className={styles.descriptionText}>{product.description}</span>
+                                    </div>
+                                    <div className={styles.date}>
+                                        Date:
+                                        <span className={styles.dateText}>{currentDate}</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <img
-                                        src={require("../../Images/icons8-edit-50.png")}
-                                        className={styles.icon}
-                                        alt=""
-                                        onClick={() => handleEditProduct(index)}
-                                    />
-                                    <img
-                                        src={deleteIcon}
-                                        className={styles.icon}
-                                        alt=""
-                                        onClick={() => deleteProduct(index)}
-                                    />
+                                <div className={styles.actions}>
+                                    <button className={styles.editButton} onClick={() => handleEditProduct(index)}>
+                                        Edit
+                                    </button>
+                                    <button className={styles.deleteButton} onClick={() => deleteProduct(index)}>
+                                        <img className={styles.deleteIcon} src={deleteIcon} alt="delete" />
+                                    </button>
                                 </div>
                             </div>
-                        </div>
+                        
                     ))}
-                    <div className={styles.context}>
-                        <label htmlFor="image">
-                            {newProduct.image ? (
-                                <img className={styles.image} src={newProduct.image} alt="" />
-                            ) : (
-                                <img className={styles.image} src={require("../../Images/personal photo.jpg")} alt="" />
-                            )}
-                        </label>
-                        <input
-                            type="file"
-                            id="image"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                        />
-                        <input
-                            type="text"
-                            name="name"
-                            value={newProduct.name}
-                            onChange={handleInputChange}
-                            placeholder="Product Name"
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="price"
-                            value={newProduct.price}
-                            onChange={handleInputChange}
-                            placeholder="Price"
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="description"
-                            value={newProduct.description}
-                            onChange={handleInputChange}
-                            placeholder="Description"
-                        />
-                        <input
-                            type="text"
-                            name="date"
-                            value={newProduct.date}
-                            onChange={handleInputChange}
-                            placeholder="Date"
-                            disabled // Disable user input for date
-                        />
-                        <button className={styles.addButton} onClick={handleAddProduct}>
-                            {editingIndex !== -1 ? 'Save' : 'Add'}
-                        </button>
-                    </div>
                 </div>
             </div>
+            <div  ref={editRef}>
+                    <div className={styles.form}>
+                        <h2> {editingIndex !== -1 ? 'Update Product' : 'Add New Product'}</h2>
+                        <div className={styles.inputGroup}>
+                            <label htmlFor="image"><span>Image:</span></label>
+                            <input
+                                type="file"
+                                id="image"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                        </div>
+                        <div className={styles.inputGroup}>
+                            <label htmlFor="name"><span>Name:</span></label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={newProduct.name}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className={styles.inputGroup}>
+                            <label htmlFor="description"><span>Description:</span></label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                value={newProduct.description}
+                                onChange={handleInputChange}
+                            ></textarea>
+                        </div>
+                        <div className={styles.inputGroup}>
+                            <label htmlFor="price"><span>Price:</span></label>
+                            <input
+                                type="text"
+                                id="price"
+                                name="price"
+                                value={newProduct.price}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className={styles.inputGroup}>
+                            <button className={styles.addButton} onClick={handleAddProduct}>
+                                {editingIndex !== -1 ? 'Update' : 'Add'}
+                            </button>
+                            <button className={styles.resetButton} onClick={resetNewProduct}>
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
         </>
     );
 };
 
 export default MyProducts;
-
 
 
 

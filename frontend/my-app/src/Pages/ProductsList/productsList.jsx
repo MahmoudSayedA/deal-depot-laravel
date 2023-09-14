@@ -11,6 +11,7 @@ function ProductsList() {
     const [categories, setCategories] = useState([]);
     const [showSidebar, setShowSidebar] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState([]);
+
     const getProducts = () => {
         axios
             .get(api_url)
@@ -36,9 +37,8 @@ function ProductsList() {
 
     const getProductInCategory = (catName) => {
         axios
-            .get(`${api_url}/category/${catName}`)
+            .get(`${api_url}?category=${catName}`)
             .then((res) => {
-                setProducts(res.data);
                 setFilteredProducts(res.data);
             })
             .catch((error) => {

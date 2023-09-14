@@ -9,10 +9,18 @@
     position: absolute
 }
 
-.context .edit,
+.context .editButton,
+.addButton,
+.resetButton,
 .context input,
 .icon {
-    background-color: var(--color-whitesmoke)
+    background-color: var(--color-whitesmoke);
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 700
 }
 
 .myProduct {
@@ -22,9 +30,10 @@
 .context .name,
 .context .price,
 .context .priceText,
-.context .time {
+.context .description,
+.context .date {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: var(--color-whitesmoke);
+    color: var(--color-sandybrown);
     padding: .3rem 0
 }
 
@@ -67,7 +76,7 @@ body {
 
 .context {
     width: 75%;
-    top: 80px;
+    top: 800px;
     box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
@@ -97,19 +106,18 @@ body {
     opacity: 1
 }
 
-.context:hover .edit {
+.context:hover .editButton, .addButton,
+.resetButton {
     visibility: visible
 }
 
-.context .edit {
+.context .editButton {
     position: absolute;
     top: 95%;
     left: 10%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    width: 2rem;
-    height: 2rem;
     cursor: pointer;
     visibility: hidden
 }
@@ -135,7 +143,7 @@ body {
     box-sizing: border-box
 }
 
-.context .time {
+.context .date {
     font-size: 1.2rem
 }
 
@@ -148,6 +156,40 @@ body {
 .context .priceText {
     font-size: 2rem;
     font-weight: 700
+}
+
+h2{
+    font-size: 30px;
+}
+
+h2,
+span{
+    color: var(--color-sandybrown);
+    padding: 10px;
+}
+
+.inputGroup{
+    margin: 20px;
+}
+
+input{
+    height: 30px;
+}
+
+.form{
+    top: 55%;
+    left: 30%;
+    width: 40%;
+    height: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    background-color: var(--color-darkslategray);
+    position: absolute;
+    -webkit-box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+    -webkit-box-sizing: border-box;
 }
 
 @media screen and (max-width:768px) {

@@ -3,9 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Product from '../Product/product';
 import styles from './addOffer.module.css';
-import Cover from '../../Component/cover';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope, faLocationDot, faMapLocationDot, faStar } from '@fortawesome/free-solid-svg-icons';
+import Cover from '../../Component/Cover/cover';
+import SellerSidebar from '../../Component/SellerSidebar/SellerSidebar';
 
 const AddOffer = () => {
   const api_url = 'http://localhost:3000/products';
@@ -15,6 +14,7 @@ const AddOffer = () => {
   const [offerSubmitted, setOfferSubmitted] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
+
 
   const handlePriceChange = (event) => {
     setOfferPrice(event.target.value);
@@ -72,35 +72,7 @@ const AddOffer = () => {
       <div className={`${styles.sidebar} ${showSidebar ? styles.showSidebar : ''}`}>
         <button onClick={() => setShowSidebar(!showSidebar)}>Show/Hide seller info</button>
         {showSidebar && (
-          <div className={styles.sinfo}>
-            <div className={styles.personalImg}>
-              <img src={require("../../Images/personal photo.jpg")} alt="" />
-            </div>
-            <div className={styles.name}>S.Name</div>
-            <div className={styles.sideIcon}>
-              <FontAwesomeIcon icon={faPhone} />
-              <p>012890380</p>
-            </div>
-            <div className={styles.sideIcon}>
-              <FontAwesomeIcon icon={faEnvelope} />
-              <p>seller@seller.com</p>
-            </div>
-            <div className={styles.sideIcon}>
-              <FontAwesomeIcon icon={faMapLocationDot} />
-              <p>seller's address</p>
-            </div>
-            <div className={styles.sideIcon}>
-              <FontAwesomeIcon icon={faLocationDot} />
-              <p>seller's location</p>
-            </div>
-            <div className={styles.rating}>
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-            </div>
-          </div>
+          <SellerSidebar/>
         )}
       </div>
     </>

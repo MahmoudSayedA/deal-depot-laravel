@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './myOffers.module.css';
-import Cover from '../../Component/cover';
+import Cover from '../../Component/Cover/cover';
 
 const MyOffers = () => {
     const [myOffers, setMyOffers] = useState([]);

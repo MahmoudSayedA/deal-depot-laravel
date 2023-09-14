@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import styles from "./productOffers.module.css";
-import Cover from '../../Component/cover';
+import Cover from '../../Component/Cover/cover';
 import classNames from "classnames/bind";
-import personalPhoto from '../../Images/personal photo.jpg';
+import personalPhoto from '../../assets/Images/personal photo.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faLocationDot, faMapLocationDot, faStar, faArrowLeft, faArrowRight, faSquarePlus, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { faSquareCaretDown } from "@fortawesome/free-regular-svg-icons";
@@ -85,7 +85,7 @@ const AddOffer = ({ children }) => {
                 </div>
                 <div className={cx(styles.sideShow, { [styles.show]: showSideShow })}>
                     <div className={styles.personalImg}>
-                        <img src={require("../../Images/personal photo.jpg")} alt="" />
+                        <img src={require("../../assets/Images/personal photo.jpg")} alt="" />
                     </div>
                     <div className={styles.name}>S.Name</div>
                     <div className={styles.sideIcon}>

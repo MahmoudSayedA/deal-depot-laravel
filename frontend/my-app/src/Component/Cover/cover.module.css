@@ -1,0 +1,151 @@
+.navbar,
+.outer {
+    overflow: hidden
+}
+
+.outer,
+nav li a {
+    color: var(--color-darkslateblue)
+}
+
+.inner,
+.logo,
+.navbar {
+    margin: 0 !important
+}
+
+.searchbar button,
+.searchbar input {
+    background-color: var(--color-darkslateblue);
+    height: 40px;
+    color: #fff
+}
+
+:root {
+    --color-whitesmoke: #ECF0F1;
+    --color-darkslategray: #222F3E;
+    --color-sandybrown: #FF9F43;
+    --color-darkslateblue: #192A56;
+    --br-3xs: 3px;
+    --br-31xl: 31px;
+    --font-size-41xl: 4.5rem;
+    --font-size-6xl: 6rem;
+    --padding-11xl: 11rem;
+    --padding-3xs: 3px;
+    --gap-81xl: 81px;
+    --font-inter: 'Inter', sans-serif
+}
+
+.outer {
+    position: relative;
+    background-color: var(--color-darkslateblue);
+    width: 100%;
+    height: 1024px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: var(--padding-11xl) var(--padding-3xs);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    gap: var(--gap-81xl);
+    text-align: left;
+    font-size: var(--font-size-6xl);
+    font-family: var(--font-inter)
+}
+
+.inner,
+.logo,
+.navbar,
+.searchbar {
+    position: absolute
+}
+
+.navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    top: 80px;
+    left: 600px;
+    width: 1000px;
+    height: 100px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    z-index: 1
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+
+nav li {
+    display: inline-block;
+    font-size: 30px
+}
+
+nav li a {
+    text-align: center;
+    padding: 14px 13px;
+    text-decoration: none;
+    cursor: pointer
+}
+
+nav li a:hover {
+    color: var(--color-sandybrown)
+}
+
+.inner {
+    top: 68px;
+    left: 84px;
+    border-radius: var(--br-3xs) 0 var(--br-3xs) 0;
+    background-color: var(--color-whitesmoke);
+    width: 1445px;
+    height: 877px;
+    z-index: 0
+}
+
+.logo {
+    top: 85px;
+    left: 104px;
+    border-radius: var(--br-3xs);
+    width: 170px;
+    height: 100px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    z-index: 1
+}
+
+.searchbar {
+    top: 150px;
+    margin: 10px;
+    height: 67px;
+    left: 600px;
+    width: 377px
+}
+
+.searchbar input {
+    border-radius: 10px;
+    width: 250px;
+    padding: 5px;
+    border: none;
+    font-size: 16px;
+    border-radius: var(--br-31xl)
+}
+
+.searchbar button {
+    border-radius: 50px;
+    width: 80px;
+    border: none;
+    margin-left: 5px
+}
