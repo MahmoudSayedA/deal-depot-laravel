@@ -1,0 +1,86 @@
+.content form input,
+.content form span {
+    font-size: 20px;
+    color: var(--color-darkslateblue)
+}
+
+.content form input {
+    background-color: var(--color-sandybrown)
+}
+
+.content {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    top: 350px;
+    left: 100px;
+    width: 80%
+}
+
+.content form {
+    position: absolute;
+    top: 150px;
+    left: 850px;
+    display: inline
+}
+
+.content form span {
+    font-weight: 600px;
+    width: 300px;
+    margin-left: 5px
+}
+
+.content form input {
+    height: 40px;
+    width: 150px
+}
+
+.content form button,
+.sidebar button {
+    cursor: pointer;
+    background-color: var(--color-darkslateblue);
+    color: var(--color-whitesmoke);
+    font-size: 30px;
+    border-radius: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    position: absolute
+}
+
+.content form button {
+    display: flex;
+    top: 5px;
+    left: 210px
+}
+
+.content form button:hover,
+.sidebar button:hover {
+    background-color: var(--color-sandybrown);
+    color: var(--color-darkslateblue);
+    -webkit-box-shadow: 0 0 .5rem rgba(0, 0, 0, .5);
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, .5)
+}
+
+.sidebar button {
+    display: flex;
+    top: 290px;
+    left: 1100px;
+    margin-top: 10px;
+    margin-left: 70px
+}
+
+.message {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    top: 850px;
+    left: 1450px
+}
+
+.message button {
+    background-color: var(--color-sandybrown);
+    width: 50px;
+    height: 50px
+}

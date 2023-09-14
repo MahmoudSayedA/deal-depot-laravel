@@ -1,0 +1,89 @@
+.information h2,
+.information span {
+    color: var(--color-darkslateblue)
+}
+
+
+.information {
+    top: 30px;
+    position: absolute
+}
+
+.information input {
+    border-radius: var(--br-31xl);
+    background-color: var(--color-darkslateblue);
+    color: var(--color-sandybrown);
+    width: 200px;
+    height: 40px;
+    mix-blend-mode: difference;
+    font-size: 20px;
+    border: 0;
+    z-index: 2
+}
+
+.information button {
+    height: 67px;
+    width: 50%;
+    border-radius: 50px;
+    padding: 10px 30px;
+    background-color: var(--color-darkslateblue);
+    color: var(--color-whitesmoke);
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 10px;
+    border: 0;
+    z-index: 5
+}
+
+.information button:hover {
+    color: var(--color-darkslateblue);
+    background-color: var(--color-whitesmoke);
+    font-size: 30px;
+}
+
+.information {
+    left: 130px;
+    height: 630px;
+    border-radius: var(--br-31xl);
+    width: 500px;
+    background-color: var(--color-sandybrown);
+    mix-blend-mode: difference;
+    font-size: 20px;
+    border: 0;
+    z-index: 2
+}
+
+
+.information img {
+    border-radius: var(--br-31xl)
+}
+
+.information h2 {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 50px
+}
+
+.information span {
+    padding-top: 40px;
+    padding-left: 10px
+}
+
+.address,
+.mail,
+.phone,
+.name {
+    margin: 50px
+}
+
+.font {
+    font-size: 30px
+}
+
+.information img {
+    position: absolute;
+    margin: 5px;
+    height: 50px
+}
